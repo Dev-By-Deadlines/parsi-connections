@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+@theme {
+    /* Core colors */
+  --color-background: #0a0f1a;
+  --color-surface: #111827;
+  --color-surface-lighter: #1f2937;
+  
+  /* Game specific */
+  --color-primary: #818cf8;
+  --color-primary-hover: #a5b4fc;
+  --color-success: #34d399;       
+  --color-error: #f87171;
+  --color-warning: #fbbf24;
+  --color-health: #ef4444;
+  
+  /* Text */
+  --color-text: #f3f4f6;
+  --color-text-muted: #9ca3af;
+  
+  /* Borders */
+  --color-border: #374151;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-text);
+}
