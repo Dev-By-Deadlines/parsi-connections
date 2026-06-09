@@ -1,10 +1,13 @@
 import { GuessRequest, GuessResponse, PuzzleResponse } from "./types";
 
-
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
-
 export async function fetchDailyPuzzle(): Promise<PuzzleResponse> {
-    const res = await fetch(`${BASE_URL}/puzzles/daily`);
+    const res = await fetch(`/api/puzzles/daily`, {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json; charset=utf-8',
+        },
+        credentials: 'same-origin',
+    });
 
     if (!res.ok) {
         throw new Error('failed to fetch puzzle');
@@ -13,11 +16,13 @@ export async function fetchDailyPuzzle(): Promise<PuzzleResponse> {
 }
 
 export async function submitGuess(puzzleId:number, words: string[]): Promise<GuessResponse> {
-    const res = await fetch(`${BASE_URL}/puzzles/${puzzleId}/guess`, {
+    const res = await fetch(`/api/puzzles/${puzzleId}/guess`, {
         method: 'POST',
         headers: {
-            'content-type': 'application/json; charset=utf-8', 
+            'Content-Type': 'application/json; charset=utf-8', 
+            'Accept': 'application/json; charset=utf-8'
         },
+        credentials: 'same-origin',
         body: JSON.stringify({words} as GuessRequest),
     });
     if (!res.ok) {

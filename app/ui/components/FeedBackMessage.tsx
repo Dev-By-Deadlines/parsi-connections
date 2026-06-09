@@ -7,6 +7,7 @@ interface FeedbackMessageProps {
 }
 
 export default function FeedbackMessage({ message, type, onClear }: FeedbackMessageProps) {
+    const base = 'flex items-center justify-center gap-2 p-3 rounded-2xl border text-center transition-all'
     if (!message) return null;
     
     const typeStyles = {
@@ -17,16 +18,13 @@ export default function FeedbackMessage({ message, type, onClear }: FeedbackMess
     };
     
     return (
-        <div className={`p-3 rounded-lg border text-center relative ${typeStyles[type]}`}>
-            {message}
+        <div className={`${base} ${typeStyles[type]}`}>
             {onClear && (
-                <button 
-                    onClick={onClear}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 opacity-50 hover:opacity-100"
-                >
+                <button onClick={onClear}>
                     ✕
                 </button>
             )}
+            {message}
         </div>
     );
 }

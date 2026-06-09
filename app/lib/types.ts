@@ -1,12 +1,16 @@
+
+export interface CategoryWord {
+    text: string;
+}
+
 export interface Category {
-    id: number;
     name: string;
-    words: string[];
+    words: CategoryWord[];
 }
 
 export interface PuzzleResponse {
     puzzleId: number;
-    outcome: "playing" | "Win" | "Lose";
+    outcome: "Playing" | "Won" | "Lost";
     remainingHealth: number;
     unSolvedWords: string[];
     solvedCategoryDtos: Category[];

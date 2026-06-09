@@ -32,7 +32,7 @@ export default function GameBoard({
     }
   };
   return (
-    <div className="grid grid-cols-4 gap-2 w-fit">
+    <div className="grid grid-cols-4 gap-2 w-full">
       {words.map((word, index) => (
         <WordCard
         key={index}

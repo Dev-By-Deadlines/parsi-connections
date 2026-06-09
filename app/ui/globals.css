@@ -1,28 +1,55 @@
 @import "tailwindcss";
 
 @theme {
-    /* Core colors */
-  --color-background: #0a0f1a;
-  --color-surface: #111827;
-  --color-surface-lighter: #1f2937;
+  /* Core colors */
+  --color-background: #14110F;
+  --color-surface: #FCC873;
+  --color-surface-lighter: #FDD79B;
   
   /* Game specific */
-  --color-primary: #818cf8;
-  --color-primary-hover: #a5b4fc;
-  --color-success: #34d399;       
-  --color-error: #f87171;
-  --color-warning: #fbbf24;
-  --color-health: #ef4444;
+  --color-primary: #FBB13C ;
+  --color-primary-hover: #FCC873;
+  --color-success: #09E85E;       
+  --color-error: #F21B3F;
+  --color-warning: #7E7F9A;
   
   /* Text */
-  --color-text: #f3f4f6;
-  --color-text-muted: #9ca3af;
+  --color-onSurface: #E3E1DE;
+  --color-onSurfaceDark: #14110F;
+  --color-text-muted: #706C61;
   
   /* Borders */
-  --color-border: #374151;
+  --color-border: #706C6122;
 }
 
 body {
   background: var(--color-background);
-  color: var(--color-text);
+  color: var(--color-onSurface);
+}
+
+@layer base {
+  h1 {
+    font-size: clamp(1.75rem,6vw,2.5rem);
+    @apply font-bold tracking-tight;
+  }
+  h2 {
+    font-size: clamp(1.5rem,5vw,1.8rem);
+    @apply text-[clamp(1.5rem,5vw,1.8rem)] font-semibold;
+  }
+  h3 {
+    font-size: clamp(1.25rem,4.5vw,1.75rem);
+    @apply text-[clamp(1.25rem,4.5vw,1.75rem)] font-semibold;
+  }
+  h4 {
+    font-size: clamp(1.125rem,4vw,1.5rem);
+    @apply text-[clamp(1.125rem,4vw,1.5rem)] font-medium;
+  }
+  h5 {
+    font-size: clamp(1rem,3.5vw,1.25rem);
+    @apply text-[clamp(1rem,3.5vw,1.25rem)] font-medium;
+  }
+  p {
+    font-size: clamp(0.875rem,3vw,1rem);
+    @apply text-[clamp(0.875rem,3vw,1rem)] leading-relaxed;
+  }
 }
