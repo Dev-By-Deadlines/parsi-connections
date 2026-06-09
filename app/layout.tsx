@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   title: "Parsi Connections",
   description: "Persian version of the Word Connections puzzle.",
   icons: {
-    icon: '@/public/favicon.ico',
+    icon: 'favicon.ico',
     apple: '@/public/apple-touch-icon.png',
   }
 };
