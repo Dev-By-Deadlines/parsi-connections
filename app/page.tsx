@@ -82,7 +82,7 @@ export default function Home() {
 
     if (isLoading) {
       return(
-        <div className="flex flex-col h-full w-full justify-center items-center gap-6">
+        <div className="flex flex-col flex-11/12 justify-center items-center gap-4 w-full md:w-[500] lg:w-[600]">
           <GameBoardSkeleton/>
         </div>
       );
@@ -90,7 +90,7 @@ export default function Home() {
 
     if (!gameData) {
       return(
-        <div className="flex flex-col h-full w-full justify-center items-center gap-6">
+        <div className="flex flex-col flex-11/12 justify-center items-center gap-4 w-full md:w-[500] lg:w-[600]">
           انگار که مشکلی پیش اومده. چیزی برای نمایش وجود نداره! لطفا صفحه رو رفرش کن
         </div>
       );
@@ -105,7 +105,7 @@ export default function Home() {
       </div>
      
       
-      <main className="flex flex-col flex-11/12 justify-center items-center gap-4 w-full md:w-[500] lg:w-[600] ">
+      <main className="flex flex-col flex-11/12 justify-center items-center gap-4 w-full md:w-[500] lg:w-[600]">
         <div className="flex flex-col flex-10/12 justify-center items-center gap-4 w-full">
           <SolvedCategories categories={gameData.solvedCategoryDtos}/>
           <GameBoard 
@@ -138,7 +138,7 @@ export default function Home() {
           ☍ نیویورک تایمز کانکشنز 
           </a>
         </p>
-        <a className="py-2 text-primary-hover hover:text-primary" href="">صفحه گیتهاب پروژه</a>
+        <a className="py-2 text-primary-hover hover:text-primary" href="https://github.com/Dev-By-Deadlines/parsi-connections">صفحه گیتهاب پروژه</a>
       </footer>
     </div>
   );
