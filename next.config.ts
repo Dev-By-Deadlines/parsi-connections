@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
     return[
       {
         source: '/api/:path*',
-        destination: 'http://connections.trollguys.ir/api/:path*',
+        destination: 'https://kalamboot.ir/api/:path*',
       },
     ];
   },

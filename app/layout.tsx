@@ -9,11 +9,10 @@ const ibmPlex = IBM_Plex_Sans_Arabic({
 });
 
 export const metadata: Metadata = {
-  title: "Parsi Connections",
-  description: "Persian version of the Word Connections puzzle.",
+  title: "Kalamboot",
+  description: "Kalamboot is the Persian version of the Word Connections puzzle.",
   icons: {
     icon: 'favicon.ico',
-    apple: '@/public/apple-touch-icon.png',
   }
 };
 
@@ -24,8 +23,8 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="fa" dir="rtl" className={`${ibmPlex.className} m-0 min-h-0 h-screen w-screen overflow-hidden antialiased`}>
-      <body className="min-h-0 h-full w-full flex flex-col p-4 md:p-6 lg:p-8 overflow-hidden">{children}</body>
+      lang="fa" dir="rtl" className={`${ibmPlex.className} m-0 min-h-0 h-full w-full overflow-hidden antialiased selection:text-background selection:bg-primary`}>
+      <body className="min-h-0 h-full w-full flex flex-col justify-center items-center px-4 pt-4 md:p-6 lg:p-8">{children}</body>
     </html>
   );
 }

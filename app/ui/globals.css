@@ -19,7 +19,7 @@
   --color-text-muted: #706C61;
   
   /* Borders */
-  --color-border: #706C6122;
+  --color-border: #706C6130;
 }
 
 body {
@@ -34,22 +34,26 @@ body {
   }
   h2 {
     font-size: clamp(1.5rem,5vw,1.8rem);
-    @apply text-[clamp(1.5rem,5vw,1.8rem)] font-semibold;
+    @apply font-semibold;
   }
   h3 {
     font-size: clamp(1.25rem,4.5vw,1.75rem);
-    @apply text-[clamp(1.25rem,4.5vw,1.75rem)] font-semibold;
+    @apply font-semibold;
   }
   h4 {
     font-size: clamp(1.125rem,4vw,1.5rem);
-    @apply text-[clamp(1.125rem,4vw,1.5rem)] font-medium;
+    @apply font-medium;
   }
   h5 {
-    font-size: clamp(1rem,3.5vw,1.25rem);
-    @apply text-[clamp(1rem,3.5vw,1.25rem)] font-medium;
+    font-size: clamp(1.1rem,3.5vw,1.25rem);
+    @apply font-medium;
   }
   p {
-    font-size: clamp(0.875rem,3vw,1rem);
-    @apply text-[clamp(0.875rem,3vw,1rem)] leading-relaxed;
+    font-size: clamp(1.1rem,3vw,1.1rem);
+    @apply leading-relaxed;
+  }
+  button {
+    font-size: clamp(1rem,2vw,1.5rem);
+    @apply leading-relaxed;
   }
 }

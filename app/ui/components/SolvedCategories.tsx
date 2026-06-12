@@ -17,16 +17,16 @@ export default function SolvedCategories({ categories }: SolvedCategoriesProps) 
     if (categories.length === 0) return null;
     
     return (
-        <div className="flex flex-col gap-4 w-full transition-all delay-500">
+        <div className="flex flex-col gap-3 w-full transition-all duration-500">
             {categories.map((category, index) => (
-                <div key={index} className={`flex flex-col rounded-2xl p-3 shadow-lg border ${variants[index]} transition-all delay-500`}>
-                    <h5 className="text-center font-semibold mb-2">
+                <div key={index} className={`flex flex-col rounded-2xl p-2 shadow-lg border ${variants[index]} transition-all delay-500`}>
+                    <h5 className="text-center font-semibold">
                         {category.name}
                     </h5>
                     <div className="flex w-full justify-center text-onSurface">
                         {category.words.map((word, i) => (
                         <p className="px-1" key={i}>
-                            {word.text} {i < 3 ? '-': ''}
+                            {word.text} {i < 3 ? '،': ''}
                         </p>
                         ))}
                     </div>
