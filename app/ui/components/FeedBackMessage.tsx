@@ -7,14 +7,14 @@ interface FeedbackMessageProps {
 }
 
 export default function FeedbackMessage({ message, type, onClear }: FeedbackMessageProps) {
-    const base = 'flex items-center w-full justify-between gap-2 py-2 px-4 rounded-2xl border text-center transition-all'
+    const base = 'flex items-center w-full justify-between gap-2 py-2 px-4 rounded-2xl transition-all'
     if (!message) return null;
     
     const typeStyles = {
-        success: 'bg-success/20 text-success border-success/50',
-        error: 'bg-error/20 text-error border-error/50',
-        warning: 'bg-warning/20 text-warning border-warning/50',
-        info: 'bg-primary/20 text-primary border-primary/50'
+        success: 'bg-success/20 text-success',
+        error: 'bg-error/20 text-error',
+        warning: 'bg-warning/20 text-warning',
+        info: 'bg-primary/20 text-primary'
     };
     
     return (

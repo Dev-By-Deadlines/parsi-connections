@@ -20,12 +20,12 @@ export default function SolvedCategories({ categories }: SolvedCategoriesProps) 
         <div className="flex flex-col gap-3 w-full transition-all duration-500">
             {categories.map((category, index) => (
                 <div key={index} className={`flex flex-col rounded-2xl p-2 shadow-lg border ${variants[index]} transition-all delay-500`}>
-                    <h5 className="text-center font-semibold">
+                    <h5 className="text-center font-semibold text-sm md:text-lg lg:text-xl">
                         {category.name}
                     </h5>
                     <div className="flex w-full justify-center text-onSurface">
                         {category.words.map((word, i) => (
-                        <p className="px-1" key={i}>
+                        <p className="px-1 text-sm md:text-lg lg:text-xl" key={i}>
                             {word.text} {i < 3 ? '،': ''}
                         </p>
                         ))}

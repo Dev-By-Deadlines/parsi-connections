@@ -132,8 +132,8 @@ export default function Home() {
         />
       </div>
       <div className="flex flex-col flex-10/12 justify-center items-center gap-4 w-full">
-        <p className="text-text-muted">
-          دسته های چهار تایی از <span className="text-primary">کلم</span>ات مر
+        <p className="text-text-muted text-center text-sm md:text-md lg:text-lg">
+          دسته های 4 تایی از <span className="text-primary">کلم</span>ات مر
           <span className="text-primary">بوط</span> به هم رو پیدا کن!
         </p>
         <SolvedCategories categories={gameData.solvedCategoryDtos} />

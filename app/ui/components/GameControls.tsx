@@ -1,7 +1,5 @@
 "use client";
 
-import Loading from "./Loading";
-
 interface GameControlsProps {
   selectedCount: number;
   maxSelections: number;
@@ -21,7 +19,7 @@ export default function GameControls({
   isSubmitting,
   isGameActive,
 }: GameControlsProps) {
-  const buttonBase = 'flex w-full items-center justify-center h-full px-6 py-2 transition-all';
+  const buttonBase = 'flex flex-auto w-full items-center justify-center py-2 transition-all text-sm md:text-md lg:text-lg';
   const buttonActiveState = 'font-bold bg-primary text-onSurfaceDark cursor-pointer hover:bg-primary-hover hover:shadow-lg hover:shadow-primary-hover/10'
   return (
     <div className="w-full">
@@ -41,17 +39,17 @@ export default function GameControls({
             ))}
           </div>
         </div>
-        <div className="flex gap-1 w-full">
+        <div className="flex flex-row gap-1 w-full">
           <button
             onClick={onSubmit}
             disabled={selectedCount !== maxSelections || isSubmitting}
             className={`${buttonBase} rounded-s-2xl rounded-e-md
             ${selectedCount === maxSelections && !isSubmitting
                 ? buttonActiveState
-                : "bg-surface/20 text-onSurfaceDark"
+                : "bg-primary/12 text-onSurfaceDark"
             }`}
           >
-            {isSubmitting ? <Loading text="درحال بررسی..." /> : "ثبت حدس"}
+            {isSubmitting ? "بررسی...": "ثبت حدس"}
           </button>
           <button
             onClick={deSelet}
@@ -59,7 +57,7 @@ export default function GameControls({
             className={`${buttonBase} rounded-e-2xl rounded-s-md
             ${selectedCount >= 1 && !isSubmitting
                 ? buttonActiveState
-                : "bg-surface/20 text-onSurfaceDark"
+                : "bg-primary/12 text-onSurfaceDark"
             }`}
           >
             از انتخاب دراوردن
