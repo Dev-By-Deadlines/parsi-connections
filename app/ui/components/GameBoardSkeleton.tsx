@@ -1,7 +1,7 @@
 
 
 export default function GameBoardSkeleton() {
-    const base = 'animate-pulse h-20 w-full p-2 bg-border/30 rounded-lg md:rounded-2xl';
+    const base = 'animate-pulse h-16 w-full p-2 bg-border/30 rounded-lg md:rounded-2xl';
     return(
         <div className="flex flex-col w-full gap-6 justify-center items-center text-border">
             <div id="skelete" className="grid grid-cols-4 gap-2 w-full">

@@ -7,7 +7,7 @@ interface FeedbackMessageProps {
 }
 
 export default function FeedbackMessage({ message, type, onClear }: FeedbackMessageProps) {
-    const base = 'flex items-center w-full justify-between gap-2 py-2 px-4 rounded-2xl transition-all'
+    const base = 'flex items-center justify-between gap-2 py-2 px-4 rounded-2xl transition-all'
     if (!message) return null;
     
     const typeStyles = {
@@ -18,7 +18,7 @@ export default function FeedbackMessage({ message, type, onClear }: FeedbackMess
     };
     
     return (
-        <div className={`${base} ${typeStyles[type]} `}>
+        <div className={`absolute z-50 h-fit w-full inset-0 ${base} ${typeStyles[type]} `}>
             {message}
             {onClear && (
                 <button onClick={onClear}>

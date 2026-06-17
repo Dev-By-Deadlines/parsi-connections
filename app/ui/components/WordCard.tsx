@@ -6,7 +6,7 @@ interface WordCardProp {
 }
 
 export default function WordCard({word, onClick, isDisabled: disabled = false, isSelected}:WordCardProp){
-    const base = 'flex justify-center items-center h-20 w-full p-2 border-2 border-border rounded-lg md:rounded-2xl text-center transition-all';
+    const base = 'flex justify-center items-center h-16 w-full border border-border rounded-2xl text-center transition-all';
     
     const variants = {
         natural: 'text-text',

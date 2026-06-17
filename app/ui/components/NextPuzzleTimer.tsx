@@ -41,11 +41,11 @@ export default function NextPuzzleTimer() {
     if (!mounted) return null;
     
     return (
-        <div className="flex flex-row items-center border border-border bg-text-muted/6 rounded-2xl p-1 text-text-muted">
-            <p className='rounded-2xl bg-text-muted/10 px-2 font-mono text-primary-hover/50'>
+        <div className="flex flex-row w-fit items-center p-1 border border-border bg-text-muted/6 rounded-2xl">
+            <p className='rounded-2xl bg-text-muted/10 px-2 py-1 font-mono text-primary-hover/50'>
                 {timeRemaining}
             </p>
-            <p className='px-2'>تا پازل روز بعد</p>
+            <p className='text-text-muted px-2 text-sm'>تا پازل بعدی</p>
         </div>
     );
 }

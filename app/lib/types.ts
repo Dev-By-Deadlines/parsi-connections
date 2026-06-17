@@ -4,6 +4,7 @@ export interface CategoryWord {
 }
 
 export interface Category {
+    categoryIndex: number;
     name: string;
     words: CategoryWord[];
 }
@@ -25,3 +26,14 @@ export interface GuessResponse {
 export interface GuessRequest {
     words: string[];
 }
+
+export interface PuzzleStats {
+    totalPlayers: number;
+    winRate: number;
+    averageRemainingHealth: number;
+    playerPercentile: number;
+    playerHealth: number;
+    playerOutcome: PuzzleResponse['outcome'];  
+    guessGrid: string[];
+}
+

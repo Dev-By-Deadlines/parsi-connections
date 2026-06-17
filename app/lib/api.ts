@@ -1,4 +1,4 @@
-import { GuessRequest, GuessResponse, PuzzleResponse } from "./types";
+import { GuessRequest, GuessResponse, PuzzleResponse, PuzzleStats } from "./types";
 
 export async function fetchDailyPuzzle(): Promise<PuzzleResponse> {
     const res = await fetch(`/api/puzzles/daily`, {
@@ -27,6 +27,20 @@ export async function submitGuess(puzzleId:number, words: string[]): Promise<Gue
     });
     if (!res.ok) {
         throw new Error('failed to submit guess');
+    }
+    return res.json();
+}
+
+export async function fetchStats(puzzleId:number): Promise<PuzzleStats> {
+    const res = await fetch(`/api/puzzles/${puzzleId}/stats`, {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json; charset=utf-8',
+        },
+        credentials: 'same-origin',
+    });
+    if(!res.ok){
+        throw new Error('failed to fetch stats');
     }
     return res.json();
 }
