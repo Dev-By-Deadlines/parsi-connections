@@ -9,11 +9,24 @@ const ibmPlex = IBM_Plex_Sans_Arabic({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://kalamboot.ir"),
   title: "Kalamboot",
   description: "Kalamboot is the Persian version of the Word Connections puzzle.",
+  keywords: ["kalamboot", "کلمبوط", "بازی کلمات", "connections", "word game", "puzzle", "Persian", "Farsi"],
   icons: {
-    icon: 'favicon.ico',
-  }
+    icon: "favicon.ico",
+  },
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "fa_IR",
+    url: "https://kalamboot.ir",
+    siteName: "Kalamboot",
+    title: "Kalamboot",
+    description: "Kalamboot is the Persian version of the Word Connections puzzle.",
+  },
 };
 
 export default function RootLayout({
