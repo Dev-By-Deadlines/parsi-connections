@@ -11,7 +11,7 @@ export interface Category {
 
 export interface PuzzleResponse {
     puzzleId: number;
-    outcome: "Playing" | "Won" | "Lost";
+    outcome: "Playing" | "Won" | "Lost" | null;
     remainingHealth: number;
     unSolvedWords: string[];
     solvedCategoryDtos: Category[];
@@ -37,3 +37,18 @@ export interface PuzzleStats {
     guessGrid: string[];
 }
 
+export interface ArchiveItems {
+    puzzleId: number;
+    remainingHealth: number;
+    solvedCategories: number;
+    outcome: PuzzleResponse['outcome'];
+    lastUsedInDaily: string;
+}
+
+export interface ArchiveResponse {
+    items: ArchiveItems[];
+    page: number;
+    limit: number;
+    total: number;
+    totalPages: number; 
+}

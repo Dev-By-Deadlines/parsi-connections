@@ -15,8 +15,8 @@ export default function HowToPlayModal({
 }: HowToPlayModalProps) {
   return (
     <Modal isOpen={isOpen} onClose={onClose} title="درباره کلمبوط">
-      <div className="flex flex-col gap-2 text-text-muted text-justify">
-        <p className="text-center pt-2 text-text-muted">
+      <div className="min-h-0 max-h-[350] flex flex-col gap-2 text-text-muted text-justify overflow-y-scroll">
+        <p className="text-center text-sm pt-2 text-text-muted">
           واژه <span className="font-bold text-primary"> کلمبوط</span> از ترکیب <span className="text-primary"> " کلمات مربوط "</span> تشکیل شده!
         </p>
         <div>
@@ -29,23 +29,9 @@ export default function HowToPlayModal({
             </li>
             <li>
               اگر حدست اشتباه بود تا
-              <span className="text-primary/80">۳ بار</span>
+              <span className="text-primary/80"> ۳ بار </span>
               دیگه هم میتونی حدس بزنی
             </li>
-            <li>
-              اگه پیام
-              <span className="text-primary/80"> "یکیش اشتباهه!" </span>
-              گرفتی، اون کلمه ای که فکر میکنی اشتباهه رو جایگزین کن
-            </li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 className="font-bold text-primary/80">✶ راهنمایی</h4>
-          <ul className="list-disc list-inside space-y-1 text-sm">
-            <li>دنبال کلمات چند معنی ای بگرد</li>
-            <li>بعضی از کلمات در ظاهر به هم ممکنه ربط نداشته باشن</li>
-            <li>کلمات حدس زده شده از لیست کلمات حذف میشن</li>
           </ul>
         </div>
         <div>
@@ -75,7 +61,7 @@ export default function HowToPlayModal({
               نسخه فارسی بازی NY Times Connections
             </p>
           </LinkButton>
-          <p className="text-sm text-center pt-2 text-text-muted">
+          <p className="text-xs text-center pt-2 text-text-muted">
             هر روز یه پازل جدید به وقت ۰۳:۳۰ ایران
           </p>
         </div>

@@ -36,7 +36,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="fa" dir="rtl" className={`${ibmPlex.className} m-0 min-h-0 h-full w-full overflow-hidden antialiased selection:text-background selection:bg-primary`}>
+      lang="fa" dir="rtl" className={`${ibmPlex.className} m-0 min-h-0 h-full w-full overflow-hidden antialiased selection:text-background selection:bg-primary scrollbar-thumb-primary scrollbar-thin`}>
       <body className="min-h-0 h-full w-full flex flex-col justify-center items-center px-4 pt-4 md:p-6 lg:p-8">{children}</body>
     </html>
   );

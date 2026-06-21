@@ -16,6 +16,7 @@ import IconButton from "./ui/components/IconButton";
 import HowToPlayModal from "./ui/components/HowToPlayModal";
 import Button from "./ui/components/Button";
 import GameStatsModal from "./ui/components/GameStatsModal";
+import ArchiveModal from "./ui/components/ArchiveModal";
 
 export default function Home() {
   const [gameData, setGameData] = useState<PuzzleResponse | null>(null);
@@ -34,6 +35,8 @@ export default function Home() {
   const [showHowToPlay, setShowHowToPlay] = useState(false);
   const [stats, setStats] = useState<PuzzleStats | null>(null);
   const [statsLoading, setStatsLoading] = useState(true);
+
+  const [showArchives, setShowArchives] = useState(false);
 
   // load daily puzzle on mount
   useEffect(() => {
@@ -214,16 +217,18 @@ export default function Home() {
       stats={stats} 
       onClose={() => setShowStats(false)}
       puzzleId={gameData.puzzleId} />
+
+      <ArchiveModal
+      isOpen={showArchives}
+      onClose={() => setShowArchives(false)}/>
       </main>
 
       <footer className="flex flex-row items-center justify-between gap-2 pb-3 w-full">     
-        <div className="flex flex-auto justify-center">
-          <NextPuzzleTimer/>
-        </div>
-        {/* <IconButton className="h-full">
-          <DownIcon/>
-          <p className="pl-1 text-sm md:text-lg">آرشیو پازل ها</p>
-        </IconButton> */}
+        <NextPuzzleTimer/>
+        <IconButton className="h-full" onClick={() => setShowArchives(true)}>
+          <span>⏷</span>
+          <p className="text-sm md:text-lg">آرشیو پازل ها</p>
+        </IconButton>
       </footer>
     </div>
   );
