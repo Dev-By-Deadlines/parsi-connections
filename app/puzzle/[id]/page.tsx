@@ -1,22 +1,29 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import FeedbackMessage from "./ui/components/FeedBackMessage";
-import GameBoard from "./ui/components/GameBoard";
-import { PuzzleResponse, PuzzleStats } from "./lib/types";
-import { fetchDailyPuzzle, fetchStats, submitGuess } from "./lib/api";
+import FeedbackMessage from "../../ui/components/FeedBackMessage";
+import GameBoard from "../../ui/components/GameBoard";
+import { PuzzleResponse, PuzzleStats } from "../../lib/types";
+import { fetchDailyPuzzle, fetchPuzzleById, fetchStats, submitGuess } from "../../lib/api";
 
-import GameBoardSkeleton from "./ui/components/GameBoardSkeleton";
-import GameControls from "./ui/components/GameControls";
-import SolvedCategories from "./ui/components/SolvedCategories";
-import KalambootLogo, { DownIcon, GitHubLogo, InfoIcon } from "./ui/components/SVGIcons";
-import NextPuzzleTimer from "./ui/components/NextPuzzleTimer";
-import HowToPlayModal from "./ui/components/HowToPlayModal";
-import Button from "./ui/components/Button";
-import GameStatsModal from "./ui/components/GameStatsModal";
-import ArchiveModal from "./ui/components/ArchiveModal";
+import GameBoardSkeleton from "../../ui/components/GameBoardSkeleton";
+import GameControls from "../../ui/components/GameControls";
+import SolvedCategories from "../../ui/components/SolvedCategories";
+import KalambootLogo, { BackIcon, DownIcon, GitHubLogo, InfoIcon } from "../../ui/components/SVGIcons";
+import NextPuzzleTimer from "../../ui/components/NextPuzzleTimer";
+import HowToPlayModal from "../../ui/components/HowToPlayModal";
+import Button from "../../ui/components/Button";
+import GameStatsModal from "../../ui/components/GameStatsModal";
+import ArchiveModal from "../../ui/components/ArchiveModal";
+import { useParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+
+  const params = useParams();
+  const router = useRouter();
+  const puzzleId = Number(params.id);
+
   const [gameData, setGameData] = useState<PuzzleResponse | null>(null);
   const [selectedIndices, setSelectedIndices] = useState<number[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -38,20 +45,22 @@ export default function Home() {
 
   // load daily puzzle on mount
   useEffect(() => {
-    loadDailyPuzzle();
-  }, []);
+    if (puzzleId) {
+      loadPuzzle();
+    }
+  }, [puzzleId]);
 
   // fetching daily puzzle function
-  const loadDailyPuzzle = async () => {
+  const loadPuzzle = async () => {
     try {
       setIsLoading(true);
-      const data = await fetchDailyPuzzle();
+      const data = await fetchPuzzleById(puzzleId);
       setGameData(data);
       setSelectedIndices([]);
     } catch (error) {
       console.error("failed to load puzzle: ", error);
       setFeedback({
-        message: "failed to load puzzle. Please refresh.",
+        message: `دریافت اطلاعات پازل شماره ${puzzleId} ناموفق بود.`,
         type: "error",
       });
     } finally {
@@ -127,6 +136,11 @@ export default function Home() {
     }
   };
 
+  // Back button functionality
+  const handleBackToDaily = () => {
+    router.push('/');
+  };
+
 
   // UI Section
   
@@ -151,16 +165,12 @@ export default function Home() {
   // setting 
   const isGameActive = gameData.outcome === "Playing";
   return (
-    <div className="flex flex-col h-full w-full justify-between items-center">
+    <div className="flex flex-col h-full w-full gap-2 justify-between items-center">
       <header className="flex flex-row justify-between items-center w-full text-primary">
           <div className="flex flex-row items-center gap-3">
             <KalambootLogo className="w-9"/>
             <div className="flex flex-col -skew-2">
               <h2 className="leading-none text-shadow-lg text-shadow-primary/10">کلمبوط</h2>
-              <p className="text-text-muted text-sm"> 
-                 پازل روزانه <span className="text-primary-hover/80">کلم</span>ات مر
-                <span className="text-primary-hover/80">بوط</span>
-              </p>
             </div>
           </div>
           <div className="flex flex-row items-center gap-2">            
@@ -169,12 +179,20 @@ export default function Home() {
             </Button>
             <a href="https://github.com/Dev-By-Deadlines" target="_blank">
             <Button variant="iconBased">
-
               <GitHubLogo/>
             </Button>
             </a>
           </div>
       </header>
+
+      <div className="w-full flex items-center justify-between bg-text-muted/6 border border-border p-1 rounded-2xl">
+        <p className="text-sm md:text-lg lg:text-xl text-text-muted px-2">شما در حال بازی کردن پازل {puzzleId} می باشید</p>
+        <Button variant="iconBased" onClick={handleBackToDaily}>
+          بازگشت به پازل روزانه
+          <BackIcon/>
+        </Button>
+      </div>
+
       <main className="flex flex-col flex-auto justify-center items-center w-full gap-4 my-3">
         <p className="text-text-muted text-center text-sm md:text-md lg:text-lg">
           دسته های ۴ تایی از کلمات مربوط به هم رو پیدا کن
@@ -196,7 +214,7 @@ export default function Home() {
           isGameActive={isGameActive}
         />
         {!isGameActive && (
-          <Button className="rounded-2xl" disabled={statsLoading} aria-label="view stats"
+          <Button className="w-full" disabled={statsLoading} aria-label="view stats"
           onClick={() => setShowStats(true)}>
             مشاهده آمار و نتایج بازی
           </Button>

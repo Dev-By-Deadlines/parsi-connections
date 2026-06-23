@@ -45,14 +45,14 @@ export default function GameControls({
           <Button 
             onClick={onSubmit}
             disabled={selectedCount !== maxSelections || isSubmitting}
-            className={`flex-auto rounded-s-2xl rounded-e-md`}
+            className={`flex-auto rounded-s-2xl rounded-e-md w-full`}
           >
             {isSubmitting ? "بررسی..." : "ثبت حدس"}
           </Button>
           <Button
             onClick={deSelet}
             disabled={!selectedCount || isSubmitting}
-            className={`flex-auto rounded-e-2xl rounded-s-md`}
+            className={`flex-auto rounded-e-2xl rounded-s-md w-full`}
           >
             از انتخاب دراوردن
           </Button>

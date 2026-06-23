@@ -61,8 +61,8 @@ export function NewYorkTimesLogo({className}:{className?: string}) {
 export function InfoIcon() {
   return (
      <svg
-    width={20}
-    height={20}
+    width={18}
+    height={18}
     viewBox="-6.5 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
     className={`fill-primary`}
@@ -76,13 +76,93 @@ export function DownIcon() {
   return (
      <svg
     xmlns="http://www.w3.org/2000/svg"
-    width={14}
-    height={14}
+    width={10}
+    height={10}
     viewBox="0 0 52 52"
     xmlSpace="preserve"
     className="fill-primary"
   >
     <path d="M8.3 14h35.4c1 0 1.7 1.3.9 2.2L27.3 37.4c-.6.8-1.9.8-2.5 0L7.3 16.2c-.7-.9-.1-2.2 1-2.2" />
+  </svg>
+  );
+}
+
+export function ShareIcon() {
+  return (
+      <svg
+    width={14}
+    height={14}
+    viewBox="0 0 36 36"
+    xmlns="http://www.w3.org/2000/svg"
+    className="fill-primary"
+  >
+    <path
+      className="clr-i-solid clr-i-solid-path-1"
+      d="M27.53 24a5 5 0 0 0-3.6 1.55l-12.19-6.1a4.47 4.47 0 0 0 0-2.8l12.21-6.21a5.12 5.12 0 1 0-1.07-1.7l-12.09 6.15a5 5 0 1 0 0 6.33l12.06 6.07a4.9 4.9 0 0 0-.31 1.71 5 5 0 1 0 5-5Z"
+    />
+    <path fill="none" d="M0 0h36v36H0z" />
+  </svg>
+  );
+}
+
+export function PlayIcon() {
+  return (
+      <svg
+    width={14}
+    height={14}
+    viewBox="0 0 15 15"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className="fill-primary"
+  >
+    <path
+      d="M4.79 2.093A.5.5 0 0 0 4 2.5v10a.5.5 0 0 0 .79.407l7-5a.5.5 0 0 0 0-.814z"
+    />
+  </svg>
+  );
+}
+
+export function BackwardIcon() {
+  return (
+        <svg
+    width={14}
+    height={14}
+    viewBox="0 0 24 24"
+    data-name="Flat Color"
+    xmlns="http://www.w3.org/2000/svg"
+    className="fill-primary"
+  >
+    <path d="M21.47 5.12a1 1 0 0 0-1 0l-7.45 5V6a1 1 0 0 0-.53-.88 1 1 0 0 0-1 0L4 10.13V4a1 1 0 0 0-2 0v16a1 1 0 0 0 2 0v-6.13l7.45 5A1 1 0 0 0 13 18v-4.13l7.45 5A1 1 0 0 0 22 18V6a1 1 0 0 0-.53-.88"/>
+  </svg>
+  );
+}
+
+export function ForwardIcon() {
+  return (
+        <svg
+    width={14}
+    height={14}
+    viewBox="0 0 24 24"
+    data-name="Flat Color"
+    xmlns="http://www.w3.org/2000/svg"
+    className="fill-primary"
+  >
+    <path d="M21 3a1 1 0 0 0-1 1v6.13l-7.45-5a1 1 0 0 0-1 0A1 1 0 0 0 11 6v4.13l-7.45-5a1 1 0 0 0-1 0A1 1 0 0 0 2 6v12a1 1 0 0 0 .53.88 1 1 0 0 0 1-.05l7.45-5V18a1 1 0 0 0 .53.88 1 1 0 0 0 1-.05l7.45-5V20a1 1 0 0 0 2 0V4A1 1 0 0 0 21 3"/>
+  </svg>
+  );
+}
+
+export function BackIcon() {
+  return (
+        <svg
+    width={18}
+    height={18}
+    viewBox="0 0 32 32"
+    xmlns="http://www.w3.org/2000/svg"
+    className="fill-primary"
+
+  >
+    <path d="M22 29.73a1 1 0 0 1-.71-.29L9.93 18.12a3 3 0 0 1 0-4.24L21.24 2.56A1 1 0 1 1 22.66 4L11.34 15.29a1 1 0 0 0 0 1.42L22.66 28a1 1 0 0 1 0 1.42 1 1 0 0 1-.66.31"/>
   </svg>
   );
 }

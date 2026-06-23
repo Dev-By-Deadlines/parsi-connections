@@ -28,6 +28,14 @@ body {
 }
 
 @layer base {
+  * {
+    scrollbar-width: thin;
+    scrollbar-arrow-color: var(--color-background);
+    @apply scrollbar-thumb-primary scrollbar-track-background/0 scrollbar-none;
+  }
+  html {
+    @apply antialiased selection:text-background selection:bg-primary;
+  }
   h1 {
     font-size: clamp(1.75rem,6vw,2.5rem);
     @apply font-bold tracking-tight;

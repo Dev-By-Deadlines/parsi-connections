@@ -31,11 +31,11 @@ export default function Modal({ isOpen, onClose, title, children }: ModalProps) 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center">
             <div 
-                className="absolute inset-0 bg-background/10 backdrop-blur-xs"
+                className="absolute inset-0 bg-background/69"
                 onClick={onClose}
             />
             {/* Modal content */}
-            <div className={`relative bg-background m-4 lg:m-6 border border-primary/45 rounded-2xl shadow-2xl shadow-primary/20 w-full md:w-[500] lg:w-[600]`}>
+            <div className={`relative bg-background m-4 lg:m-6 border border-border hover:border-primary/30 rounded-2xl w-full md:w-[500] lg:w-[600] transition-all`}>
                 {/* Header */}
                 <div className="flex justify-between items-center p-4 border-b border-border">
                     <h2 className="text-xl font-semibold text-primary">{title}</h2>

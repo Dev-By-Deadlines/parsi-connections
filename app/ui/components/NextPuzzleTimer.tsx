@@ -41,8 +41,8 @@ export default function NextPuzzleTimer() {
     if (!mounted) return null;
     
     return (
-        <div className="flex flex-row w-fit items-center p-1 border border-border bg-text-muted/6 rounded-2xl">
-            <p className='rounded-2xl bg-text-muted/10 px-2 py-1 font-mono text-primary-hover/50'>
+        <div className="flex flex-row w-fit items-center p-1 border border-border bg-text-muted/6 rounded-xl">
+            <p className='rounded-lg bg-text-muted/10 px-2 font-mono text-primary-hover/50'>
                 {timeRemaining}
             </p>
             <p className='text-text-muted px-2 text-sm'>تا پازل بعدی</p>

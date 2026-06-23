@@ -1,6 +1,6 @@
 "use client";
 
-import LinkButton from "./LinkButton";
+import Button from "./Button";
 import Modal from "./Modal";
 import { NewYorkTimesLogo } from "./SVGIcons";
 
@@ -55,12 +55,14 @@ export default function HowToPlayModal({
         </div>
 
         <div className="w-full flex flex-col items-center justify-center mt-4">
-          <LinkButton link="https://www.nytimes.com/games/connections">
+          <a href="https://www.nytimes.com/games/connections" target="_blank">            
+          <Button variant="iconBased">
             <NewYorkTimesLogo />
             <p className="text-sm underline underline-offset-2">
               نسخه فارسی بازی NY Times Connections
             </p>
-          </LinkButton>
+          </Button>
+          </a>
           <p className="text-xs text-center pt-2 text-text-muted">
             هر روز یه پازل جدید به وقت ۰۳:۳۰ ایران
           </p>

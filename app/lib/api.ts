@@ -46,7 +46,7 @@ export async function fetchStats(puzzleId:number): Promise<PuzzleStats> {
 }
 
 export async function fetchArchive(page: number = 1, limit: number = 10): Promise<ArchiveResponse> {
-    const res = await fetch(`/puzzles/archive?page=${page}&limit=${limit}`, {
+    const res = await fetch(`/api/puzzles/archive?page=${page}&limit=${limit}`, {
         method: 'GET',
         headers: {
             'Accept': 'application/json; charset=utf-8',
@@ -60,7 +60,7 @@ export async function fetchArchive(page: number = 1, limit: number = 10): Promis
 }
 
 export async function fetchPuzzleById(id: number): Promise<PuzzleResponse> {
-    const res = await fetch(`/puzzles/${id}/play` ,{
+    const res = await fetch(`/api/puzzles/${id}/play` ,{
         method: 'GET',
         headers: {
             'Accept': 'application/json; charset=utf-8',
