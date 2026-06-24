@@ -3,6 +3,8 @@
 import { PuzzleStats } from '@/app/lib/types';
 import Modal from './Modal';
 import Button from './Button';
+import { useState } from 'react';
+import FeedbackMessage from './FeedBackMessage';
 
 interface GameStats {
     isOpen: boolean;
@@ -10,14 +12,26 @@ interface GameStats {
     stats: PuzzleStats | null;
     puzzleId: number;
     isLoading: boolean;
+    isArchive: boolean;
 }
 
-export default function GameStatsModal({isOpen, onClose, stats, puzzleId, isLoading}: GameStats){
-    const currentDate = new Date();
-    
+export default function GameStatsModal({isOpen, onClose, stats, puzzleId, isLoading, isArchive = false}: GameStats){
+    const [feedback, setFeedback] = useState<{
+        message: string;
+        type: "success" | "error" | "warning" | "info";
+        }>({
+            message: "",
+            type: "info",
+        });
+
     const handleShare = async () => {
         try {
             const gridText = stats?.guessGrid?.join('\n') || '';
+            
+            const baseURL = 'https://kalamboot.ir';            
+            const puzzleURL = isArchive
+            ? `${baseURL}/puzzle/${puzzleId}` : `${baseURL}`
+
             const parts = [
             `🎯 کلمبوط شماره ${puzzleId}`,
             '',
@@ -27,11 +41,13 @@ export default function GameStatsModal({isOpen, onClose, stats, puzzleId, isLoad
             gridText,
             '',
             `تو هم شانس خودتو امتحان کن!`,
-            `🔗 https://kalamboot.ir`
+            `🔗 ${puzzleURL}`
             ];
             const shareData = '\u200F' + parts.join('\n');
-            alert(shareData)
+
             await navigator.clipboard.writeText(shareData);
+            setFeedback({ message: "با موفقیت کپی شد", type: "success" });
+            setTimeout(() => setFeedback({ message: "", type: "info" }), 4000);
         } catch (error) {
             console.error('failed to copy: ', error)
         }
@@ -91,9 +107,17 @@ export default function GameStatsModal({isOpen, onClose, stats, puzzleId, isLoad
                     onClick={handleShare}>
                         اشتراک گذاری نتایج
                     </Button>
+                    <div className="relative bottom-0 translate-y-8">
+                        <FeedbackMessage 
+                        message={feedback.message}
+                        type={feedback.type}
+                        onClear={() => setFeedback({message: '', type:'info'})}/>
+                    </div>
                 </div>
             ) : (
-                <div></div>
+                <div>
+                    آماری وجود نداره!
+                </div>
             ))}
         </Modal>
     );

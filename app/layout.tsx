@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import "./ui/globals.css";
 import { IBM_Plex_Sans_Arabic } from 'next/font/google';
+import Header from "./ui/components/layout/Header";
+import HeaderWrapper from "./ui/components/layout/HeaderWrapper";
+import FooterWrapper from "./ui/components/layout/FooterWrapper";
 
 const ibmPlex = IBM_Plex_Sans_Arabic({
   weight: ['400', '500', '600', '700'],
@@ -37,8 +40,10 @@ export default function RootLayout({
   return (
     <html
       lang="fa" dir="rtl" className={`${ibmPlex.className} flex justify-center items-center m-0 min-h-0 h-full w-full overflow-hidden`}>
-      <body className="min-h-0 h-full flex flex-col justify-center items-center px-4 pt-4 md:p-6 lg:p-8 w-full md:w-[500] lg:w-[600]">
+      <body className="min-h-0 h-full flex flex-col justify-between items-center px-4 pt-4 md:p-6 lg:p-8 w-full md:w-[500] lg:w-[600]">
+        <HeaderWrapper/>
         {children}
+        <FooterWrapper/>
       </body>
     </html>
   );

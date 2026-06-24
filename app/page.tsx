@@ -9,12 +9,8 @@ import { fetchDailyPuzzle, fetchStats, submitGuess } from "./lib/api";
 import GameBoardSkeleton from "./ui/components/GameBoardSkeleton";
 import GameControls from "./ui/components/GameControls";
 import SolvedCategories from "./ui/components/SolvedCategories";
-import KalambootLogo, { DownIcon, GitHubLogo, InfoIcon } from "./ui/components/SVGIcons";
-import NextPuzzleTimer from "./ui/components/NextPuzzleTimer";
-import HowToPlayModal from "./ui/components/HowToPlayModal";
 import Button from "./ui/components/Button";
 import GameStatsModal from "./ui/components/GameStatsModal";
-import ArchiveModal from "./ui/components/ArchiveModal";
 
 export default function Home() {
   const [gameData, setGameData] = useState<PuzzleResponse | null>(null);
@@ -30,11 +26,8 @@ export default function Home() {
   });
 
   const [showStats, setShowStats] = useState(false);
-  const [showHowToPlay, setShowHowToPlay] = useState(false);
   const [stats, setStats] = useState<PuzzleStats | null>(null);
   const [statsLoading, setStatsLoading] = useState(true);
-
-  const [showArchives, setShowArchives] = useState(false);
 
   // load daily puzzle on mount
   useEffect(() => {
@@ -148,89 +141,58 @@ export default function Home() {
     );
   }
   
-  // setting 
+  // showing the game if it's in the 'playing' status
   const isGameActive = gameData.outcome === "Playing";
-  return (
-    <div className="flex flex-col h-full w-full justify-between items-center">
-      <header className="flex flex-row justify-between items-center w-full text-primary">
-          <div className="flex flex-row items-center gap-3">
-            <KalambootLogo className="w-9"/>
-            <div className="flex flex-col -skew-2">
-              <h2 className="leading-none text-shadow-lg text-shadow-primary/10">کلمبوط</h2>
-              <p className="text-text-muted text-sm"> 
-                 پازل روزانه <span className="text-primary-hover/80">کلم</span>ات مر
-                <span className="text-primary-hover/80">بوط</span>
-              </p>
-            </div>
-          </div>
-          <div className="flex flex-row items-center gap-2">            
-            <Button variant="iconBased" onClick={() => setShowHowToPlay(true)}>
-              <InfoIcon/>
-            </Button>
-            <a href="https://github.com/Dev-By-Deadlines" target="_blank">
-            <Button variant="iconBased">
-
-              <GitHubLogo/>
-            </Button>
-            </a>
-          </div>
-      </header>
-      <main className="flex flex-col flex-auto justify-center items-center w-full gap-4 my-3">
-        <p className="text-text-muted text-center text-sm md:text-md lg:text-lg">
-          دسته های ۴ تایی از کلمات مربوط به هم رو پیدا کن
-        </p>
-        <SolvedCategories categories={gameData.solvedCategoryDtos}/>
-        <GameBoard
-          words={gameData.unSolvedWords}
-          selectedIndices={selectedIndices}
-          onSelectionChange={setSelectedIndices}
-          disabled={!isGameActive || isSubmitting}
+  return (      
+    <main className="flex flex-col justify-center items-center w-full gap-4">
+      
+      {isGameActive ? 
+      (
+      <p className="text-text-muted text-center text-sm md:text-md lg:text-lg">
+        دسته های ۴ تایی از کلمات مربوط به هم رو پیدا کن
+      </p>
+      ):(
+      <p className="text-text-muted text-center text-sm md:text-md lg:text-lg">
+        خسته نباشی! بازی تموم شد
+      </p>
+      )}
+      <SolvedCategories categories={gameData.solvedCategoryDtos}/>
+      <GameBoard
+        words={gameData.unSolvedWords}
+        selectedIndices={selectedIndices}
+        onSelectionChange={setSelectedIndices}
+        disabled={!isGameActive || isSubmitting}
+      />
+      <GameControls
+        selectedCount={selectedIndices.length}
+        maxSelections={4}
+        remainingHealth={gameData.remainingHealth}
+        onSubmit={handleSubmit}
+        deSelet={() => setSelectedIndices([])}
+        isSubmitting={isSubmitting}
+        isGameActive={isGameActive}
+      />
+      {!isGameActive && (
+        <Button className="rounded-2xl w-full" disabled={statsLoading} aria-label="view stats"
+        onClick={() => setShowStats(true)}>
+          مشاهده آمار و نتایج بازی
+        </Button>
+      )}
+      <div className="relative flex w-full justify-center items-center">
+        <FeedbackMessage
+          message={feedback.message}
+          type={feedback.type}
+          onClear={() => setFeedback({ message: "", type: "info" })}
         />
-        <GameControls
-          selectedCount={selectedIndices.length}
-          maxSelections={4}
-          remainingHealth={gameData.remainingHealth}
-          onSubmit={handleSubmit}
-          deSelet={() => setSelectedIndices([])}
-          isSubmitting={isSubmitting}
-          isGameActive={isGameActive}
-        />
-        {!isGameActive && (
-          <Button className="rounded-2xl" disabled={statsLoading} aria-label="view stats"
-          onClick={() => setShowStats(true)}>
-            مشاهده آمار و نتایج بازی
-          </Button>
-        )}
-        <div className="relative flex w-full justify-center items-center">
-          <FeedbackMessage
-            message={feedback.message}
-            type={feedback.type}
-            onClear={() => setFeedback({ message: "", type: "info" })}
-          />
-        </div>      
-      <HowToPlayModal 
-      isOpen={showHowToPlay} 
-      onClose={() => setShowHowToPlay(false)} />
+      </div>      
 
       <GameStatsModal
       isLoading={statsLoading} 
       isOpen={showStats} 
       stats={stats} 
       onClose={() => setShowStats(false)}
-      puzzleId={gameData.puzzleId} />
-
-      <ArchiveModal
-      isOpen={showArchives}
-      onClose={() => setShowArchives(false)}/>
-      </main>
-
-      <footer className="flex flex-row items-center justify-between gap-2 pb-3 w-full">     
-        <Button variant="iconBased" className="h-full" onClick={() => setShowArchives(true)}>
-          <DownIcon/>
-          آرشیو پازل ها
-        </Button>
-        <NextPuzzleTimer/>
-      </footer>
-    </div>
+      puzzleId={gameData.puzzleId} 
+      isArchive={false}/>
+    </main>
   );
 }

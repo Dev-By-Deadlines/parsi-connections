@@ -39,7 +39,7 @@ export default function ArchiveModal({isOpen, onClose}:ArchiveModalProps) {
     const loadArchives = async (pageNum: number) => {
         try {
             setIsLoading(true);
-            const data = await fetchArchive(pageNum, 10);
+            const data = await fetchArchive(pageNum, 4);
             setItems(data.items);
             setTotalItems(data.total);
             setTotalPages(data.totalPages);
@@ -57,7 +57,7 @@ export default function ArchiveModal({isOpen, onClose}:ArchiveModalProps) {
     };
 
     const handleShare = async (puzzleId: number, e: React.MouseEvent) => {
-         e.stopPropagation();
+        e.stopPropagation();
         const url = `${window.location.origin}/puzzle/${puzzleId}`;
         try {
             await navigator.clipboard.writeText(url);
@@ -108,7 +108,7 @@ export default function ArchiveModal({isOpen, onClose}:ArchiveModalProps) {
                         const status = getStatusInfo(item);
                         return(                                
                         <div key={item.puzzleId}
-                        className="flex justify-between items-center gap-2 py-4 border-b last:border-0 border-border/50 hover:bg-border/20">
+                        className="flex justify-between items-center gap-2 py-4 border-b last:border-0 border-border/50 hover:bg-border/20 active:bg-border/20">
                             <p className={`${itemsStyles}`}>پازل {item.puzzleId}</p>
                             <p title="last used in daily date" className={`${itemsStyles}`}>{item.lastUsedInDaily}</p>
                             <p className={`${itemsStyles} max-w-10`}>✦ {item.remainingHealth}</p>
@@ -132,20 +132,24 @@ export default function ArchiveModal({isOpen, onClose}:ArchiveModalProps) {
                 {totalPages > 1 && (
                     <div className="flex justify-center items-center gap-2 py-2">
                         <Button variant="iconBased" className="w-full" disabled={page === totalPages}
-                        onClick={() => setPage(Math.min(totalPages, page + 1))}>
+                        onClick={() => setPage(Math.min(totalPages, page + 1))}
+                        title="nextPage">
                             بعدی
                         </Button>      
-                        <Button variant="iconBased" disabled={page === totalPages} onClick={() => setPage(totalPages)}>
+                        <Button variant="iconBased" disabled={page === totalPages} onClick={() => setPage(totalPages)}
+                        title="lastPage">
                             <ForwardIcon/>
                         </Button>      
                         <span className="w-full text-center text-text-muted">
                             صفحه {page} از {totalPages}
                         </span>                          
-                        <Button variant="iconBased" disabled={page === 1} onClick={() => setPage(1)}>
+                        <Button variant="iconBased" disabled={page === 1} onClick={() => setPage(1)}
+                        title="firstPage">
                             <BackwardIcon/>
                         </Button>      
                         <Button variant="iconBased" className="w-full" disabled={page === 1} 
-                        onClick={() => setPage(Math.max(1, page - 1))}>
+                        onClick={() => setPage(Math.max(1, page - 1))}
+                        title="previousPage">
                             قبلی
                         </Button>   
                     </div>
