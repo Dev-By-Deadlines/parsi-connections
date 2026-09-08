@@ -133,9 +133,9 @@ export default function Home() {
   
   if (!gameData) {
     return (
-      <main className="w-full">
+      <main className="w-2/3 flex flex-col justify-center items-center gap-4 text-center">
         <span className="text-7xl font-black">! O_o !</span>
-        مشکلی پیش اومده.
+        مشکلی توی گرفتن اطلاعات پیش اومده. <br />
         اتصالت رو به اینترنت چک کن و صفحه رو مجدد رفرش کن
       </main>
     );
