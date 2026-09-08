@@ -5,15 +5,15 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return[
       {
-        source: '/api/:path*',
-        destination: 'https://kalamboot.ir/api/:path*',
+        source: '/puzzles/:path*',
+        destination: 'https://parsi-connections-api.onrender.com/puzzles/:path*',
       },
     ];
   },
   async headers() {
     return [
       {
-        source: '/api/:path*',
+        source: '/puzzles/:path*',
         headers: [
           { key: 'Access-Control-Allow-Credentials', value: 'true' },
         ],
